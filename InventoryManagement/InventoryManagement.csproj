@@ -70,6 +70,7 @@
   <ItemGroup>
     <Content Include="Cart.aspx" />
     <Content Include="Default.aspx" />
+    <Content Include="InventoryPage.aspx" />
     <Content Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -96,6 +97,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InventoryPage.aspx.cs">
+      <DependentUpon>InventoryPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InventoryPage.aspx.designer.cs">
+      <DependentUpon>InventoryPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Inventory\InventoryManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

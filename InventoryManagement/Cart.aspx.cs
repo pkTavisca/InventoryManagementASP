@@ -18,7 +18,12 @@ namespace InventoryManagement
             {
                 if (itemId.IndexOf("item_") != 0) continue;
                 string itemName = itemId.Substring(5);
-                int itemQuantity = int.Parse(Request.Form[itemId]);
+                int itemQuantity = 0;
+                try
+                {
+                    itemQuantity = int.Parse(Request.Form[itemId]);
+                }
+                catch { }
                 if (itemQuantity > _inventory[itemName]) itemQuantity = _inventory[itemName];
 
                 cartItems.InnerHtml += $"{itemName} : {itemQuantity}<input type='hidden' name='{itemId}' value='{itemQuantity}'";

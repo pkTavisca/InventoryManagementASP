@@ -13,5 +13,6 @@
         </ul>
         <input type="submit" id="submitButton" runat="server" value="Continue to cart" />
     </form>
+    <a href="InventoryPage.aspx">Inventory Management</a>
 </body>
 </html>

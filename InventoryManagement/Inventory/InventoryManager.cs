@@ -20,6 +20,7 @@ namespace InventoryManagement.Inventory
         public void Add(string item, int numberOfItems = 1)
         {
             Dictionary<string, int> inventory = GetInventory();
+            if (inventory.ContainsKey(item) == false) inventory[item] = 0;
             inventory[item] += numberOfItems;
             UpdateInventory(inventory);
         }
