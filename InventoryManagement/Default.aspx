@@ -7,9 +7,11 @@
     <title></title>
 </head>
 <body>
-    <form id="form1" runat="server">
-        <div>
-        </div>
+    <form id="form1" runat="server" method="post" action="Cart.aspx">
+        <h1>Store Page</h1>
+        <ul id="listOfItems" runat="server">
+        </ul>
+        <input type="submit" id="submitButton" runat="server" value="Continue to cart" />
     </form>
 </body>
 </html>
