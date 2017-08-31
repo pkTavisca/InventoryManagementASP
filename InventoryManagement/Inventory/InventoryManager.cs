@@ -28,6 +28,7 @@ namespace InventoryManagement.Inventory
         {
             Dictionary<string, int> inventory = GetInventory();
             inventory[item] -= numberOfItems;
+            if (inventory[item] == 0) inventory.Remove(item);
             UpdateInventory(inventory);
         }
         private void UpdateInventory(Dictionary<string, int> inventory)

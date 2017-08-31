@@ -7,7 +7,7 @@
     <title></title>
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="form1" runat="server" method="post" action="SuccessPage.aspx">
         <h3>Your cart</h3>
         <ul id="cartItems" runat="server"></ul>
         <input type="submit" name="checkout" value="Checkout" />
