@@ -25,8 +25,11 @@ namespace InventoryManagement
                 }
                 catch { }
                 if (itemQuantity > _inventory[itemName]) itemQuantity = _inventory[itemName];
-
-                cartItems.InnerHtml += $"{itemName} : {itemQuantity}<input type='hidden' name='{itemId}' value='{itemQuantity}'";
+                Session[itemName] = itemQuantity;
+            }
+            foreach (string sessionItem in Session.Keys)
+            {
+                cartItems.InnerHtml += $"<div>{sessionItem} : {Session[sessionItem]}<input type='hidden' name='item_{sessionItem}' value='{Session[sessionItem]}'></div>";
             }
         }
     }
