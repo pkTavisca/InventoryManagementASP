@@ -1,4 +1,5 @@
-﻿using InventoryManagement.Inventory;
+﻿using InventoryManagement.Database;
+using InventoryManagement.Inventory;
 using System;
 
 namespace InventoryManagement
@@ -15,6 +16,8 @@ namespace InventoryManagement
             {
                 listOfItems.InnerHtml += $"<li>{item.Key} <input type='number' name='item_{item.Key}'/></li>";
             }
+            DatabaseManager dbManager = new DatabaseManager();
+            dbManager.Connect();
         }
     }
 }
