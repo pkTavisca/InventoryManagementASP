@@ -107,6 +107,7 @@
       <DependentUpon>InventoryPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Inventory\InventoryManager.cs" />
+    <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SuccessPage.aspx.cs">
       <DependentUpon>SuccessPage.aspx</DependentUpon>

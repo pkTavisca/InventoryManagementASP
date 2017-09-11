@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InventoryManagement.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -36,6 +37,14 @@ namespace InventoryManagement.Database
         {
             if (_connection.State == ConnectionState.Open)
                 _connection.Close();
+        }
+
+        public List<Product> GetAllProducts()
+        {
+            string sql = "SELECT * FROM Products";
+            SqlCommand command = new SqlCommand(sql, _connection);
+            var reader = command.ExecuteReader();
+            return Product.GenerateProduct(reader);
         }
     }
 }

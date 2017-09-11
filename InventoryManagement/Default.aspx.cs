@@ -11,13 +11,19 @@ namespace InventoryManagement
         protected void Page_Load(object sender, EventArgs e)
         {
             listOfItems.InnerHtml = string.Empty;
-            var inventory = _inventoryManager.GetInventory();
-            foreach (var item in inventory)
-            {
-                listOfItems.InnerHtml += $"<li>{item.Key} <input type='number' name='item_{item.Key}'/></li>";
-            }
+
             DatabaseManager dbManager = new DatabaseManager();
             dbManager.Connect();
+            var products = dbManager.GetAllProducts();
+
+            foreach (var product in products)
+            {
+                if (product.Quantity < 1) continue;
+                listOfItems.InnerHtml += $"<li>{product.Name} " +
+                    $"<input type='number' name='item_{product.Id}' value=0 /></li>";
+            }
+
+            dbManager.Disconnect();
         }
     }
 }
