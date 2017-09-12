@@ -1,4 +1,5 @@
-﻿using InventoryManagement.Inventory;
+﻿using InventoryManagement.Database;
+using InventoryManagement.Inventory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,13 +14,19 @@ namespace InventoryManagement
         private InventoryManager _inventoryManager = new InventoryManager();
         protected void Page_Load(object sender, EventArgs e)
         {
-            foreach (var item in Request.Form.AllKeys)
+            if (Request.Form.AllKeys.Contains("checkout") == false) return;
+            DatabaseManager dbManager = new DatabaseManager();
+            dbManager.Connect();
+            dbManager.InsertInOrder();
+            foreach (var item in Session.Keys)
             {
-                if (item.IndexOf("item_") != 0) continue;
-                string itemName = item.Substring(5);
-                int itemQuantity = int.Parse(Request.Form[item]);
-                _inventoryManager.Remove(itemName, itemQuantity);
+                string itemId = item.ToString();
+                int itemQuantity = int.Parse(Session[itemId].ToString());
+                if (itemQuantity < 1) continue;
+                int orderId = dbManager.GetLastOrderId();
+                dbManager.InsertInOrderDetails(orderId, itemId, itemQuantity);
             }
+            dbManager.Disconnect();
         }
     }
 }

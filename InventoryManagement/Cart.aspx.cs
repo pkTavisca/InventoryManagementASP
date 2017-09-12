@@ -35,7 +35,9 @@ namespace InventoryManagement
             }
             foreach (string productId in Session.Keys)
             {
-                cartItems.InnerHtml += $"<div>{GetProductById(products, int.Parse(productId)).Name} : {Session[productId]}" +
+                int quantity = int.Parse(Session[productId].ToString());
+                if (quantity < 1) continue;
+                cartItems.InnerHtml += $"<div>{GetProductById(products, int.Parse(productId)).Name} : {quantity}" +
                     $"<input type='hidden' name='item_{productId}' value='{Session[productId]}'></div>";
             }
         }

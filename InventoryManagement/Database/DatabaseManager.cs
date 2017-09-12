@@ -33,6 +33,27 @@ namespace InventoryManagement.Database
             return true;
         }
 
+        public void InsertInOrder()
+        {
+            string sql = "INSERT INTO Orders(DateTime, Name) VALUES (CURRENT_TIMESTAMP, NULL) ";
+            SqlCommand command = new SqlCommand(sql, _connection);
+            command.ExecuteNonQuery();
+        }
+
+        public void InsertInOrderDetails(int orderId, string itemId, int itemQuantity)
+        {
+            string sql = $"INSERT INTO OrderDetails(OrderId, ProductId, Quantity) VALUES ({orderId}, {itemId}, {itemQuantity}) ";
+            SqlCommand command = new SqlCommand(sql, _connection);
+            command.ExecuteNonQuery();
+        }
+
+        public int GetLastOrderId()
+        {
+            string sql = "SELECT MAX(Id) FROM Orders";
+            SqlCommand command = new SqlCommand(sql, _connection);
+            return (int)command.ExecuteScalar();
+        }
+
         public void Disconnect()
         {
             if (_connection.State == ConnectionState.Open)
