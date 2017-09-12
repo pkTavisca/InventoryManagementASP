@@ -14,7 +14,8 @@
         Add a new item
         <div>Item:<input type="text" name="newItemName" /></div>
         <div>Quantity:<input type="number" name="newItemQuantity" /></div>
-        <input type="submit" value="Add" />
+        <div>Price Per Item:<input type="number" name="newItemPrice" /></div>
+        <input type="submit" name="Add" value="Add" />
     </form>
     <a href="Default.aspx">Home Page</a>
 </body>

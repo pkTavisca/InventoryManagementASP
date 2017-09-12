@@ -33,6 +33,13 @@ namespace InventoryManagement.Database
             return true;
         }
 
+        internal void InsertNewProduct(string productName, int productQuantity, int productPrice)
+        {
+            string sql = $"INSERT INTO Products(Name, Quantity, Price) VALUES ('{productName}', {productQuantity}, {productPrice}) ";
+            SqlCommand command = new SqlCommand(sql, _connection);
+            command.ExecuteNonQuery();
+        }
+
         public void InsertInOrder()
         {
             string sql = "INSERT INTO Orders(DateTime, Name) VALUES (CURRENT_TIMESTAMP, NULL) ";
