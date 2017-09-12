@@ -25,6 +25,7 @@ namespace InventoryManagement
                 if (itemQuantity < 1) continue;
                 int orderId = dbManager.GetLastOrderId();
                 dbManager.InsertInOrderDetails(orderId, itemId, itemQuantity);
+                dbManager.RemoveFromProductStore(itemId, itemQuantity);
             }
             dbManager.Disconnect();
         }

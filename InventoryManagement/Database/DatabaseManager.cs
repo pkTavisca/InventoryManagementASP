@@ -40,6 +40,21 @@ namespace InventoryManagement.Database
             command.ExecuteNonQuery();
         }
 
+        public void RemoveFromProductStore(string itemId, int cartItemQuantity)
+        {
+            int quantity = GetQuantityOfProduct(itemId);
+            string sql = $"UPDATE Products SET Quantity = {quantity - cartItemQuantity} WHERE Id = {itemId}";
+            SqlCommand command = new SqlCommand(sql, _connection);
+            command.ExecuteNonQuery();
+        }
+
+        private int GetQuantityOfProduct(string productId)
+        {
+            string sql = $"SELECT Quantity FROM Products WHERE Id = {productId}";
+            SqlCommand command = new SqlCommand(sql, _connection);
+            return (int)command.ExecuteScalar();
+        }
+
         public void InsertInOrderDetails(int orderId, string itemId, int itemQuantity)
         {
             string sql = $"INSERT INTO OrderDetails(OrderId, ProductId, Quantity) VALUES ({orderId}, {itemId}, {itemQuantity}) ";
