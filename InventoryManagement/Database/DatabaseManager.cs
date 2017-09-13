@@ -33,9 +33,23 @@ namespace InventoryManagement.Database
             return true;
         }
 
-        internal void InsertNewProduct(string productName, int productQuantity, int productPrice)
+        public void InsertNewProduct(string productName, int productQuantity, int productPrice)
         {
             string sql = $"INSERT INTO Products(Name, Quantity, Price) VALUES ('{productName}', {productQuantity}, {productPrice}) ";
+            SqlCommand command = new SqlCommand(sql, _connection);
+            command.ExecuteNonQuery();
+        }
+
+        public void UpdateProduct(int productId, int productQuantity)
+        {
+            string sql = $"UPDATE Products SET Quantity = {productQuantity} WHERE Id = {productId}";
+            SqlCommand command = new SqlCommand(sql, _connection);
+            command.ExecuteNonQuery();
+        }
+
+        public void DeleteProduct(int productId)
+        {
+            string sql = $"DELETE FROM Products WHERE Id = {productId}";
             SqlCommand command = new SqlCommand(sql, _connection);
             command.ExecuteNonQuery();
         }
