@@ -11,6 +11,7 @@
         <h1>Inventory Management Page</h1>
         <ul id="listOfItems" runat="server">
         </ul>
+        <div id="resultMessage" runat="server"></div>
         Add a new item
         <div>Item:<input type="text" name="newItemName" /></div>
         <div>Quantity:<input type="number" name="newItemQuantity" /></div>

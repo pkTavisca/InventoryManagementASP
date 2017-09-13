@@ -10,6 +10,7 @@ namespace InventoryManagement
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            resultMessage.InnerText = string.Empty;
             DatabaseManager dbManager = new DatabaseManager();
             dbManager.Connect();
             if (Request.Form.AllKeys.Contains("Add"))
@@ -30,10 +31,6 @@ namespace InventoryManagement
                     }
                 }
             }
-            if (AnyRequestContains("delete"))
-            {
-
-            }
             foreach (string key in Request.Form.AllKeys)
             {
                 if (key.Contains("delete"))
@@ -46,6 +43,7 @@ namespace InventoryManagement
                     catch (Exception ex)
                     {
                         dbManager.UpdateProduct(productId, 0);
+                        resultMessage.InnerText = "Item could not be deleted so quantity has been set to zero.";
                     }
                 }
             }
@@ -59,16 +57,6 @@ namespace InventoryManagement
                     $"<input type='submit' value='Delete' name ='delete{product.Id}' /></li>";
             }
             dbManager.Disconnect();
-        }
-
-        private bool AnyRequestContains(string searchString)
-        {
-            foreach (string key in Request.Form.AllKeys)
-            {
-                if (key.Contains(searchString))
-                    return true;
-            }
-            return false;
         }
     }
 }
