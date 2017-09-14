@@ -54,9 +54,9 @@ namespace InventoryManagement.Database
             command.ExecuteNonQuery();
         }
 
-        public void InsertInOrder()
+        public void InsertInOrder(decimal price)
         {
-            string sql = "INSERT INTO Orders(DateTime, Name) VALUES (CURRENT_TIMESTAMP, NULL) ";
+            string sql = $"INSERT INTO Orders(DateTime, Name, Price) VALUES (CURRENT_TIMESTAMP, NULL, {price}) ";
             SqlCommand command = new SqlCommand(sql, _connection);
             command.ExecuteNonQuery();
         }
@@ -76,9 +76,9 @@ namespace InventoryManagement.Database
             return (int)command.ExecuteScalar();
         }
 
-        public void InsertInOrderDetails(int orderId, string itemId, int itemQuantity)
+        public void InsertInOrderDetails(int orderId, string itemId, int itemQuantity, decimal price)
         {
-            string sql = $"INSERT INTO OrderDetails(OrderId, ProductId, Quantity) VALUES ({orderId}, {itemId}, {itemQuantity}) ";
+            string sql = $"INSERT INTO OrderDetails(OrderId, ProductId, Quantity, Price) VALUES ({orderId}, {itemId}, {itemQuantity}, {price}) ";
             SqlCommand command = new SqlCommand(sql, _connection);
             command.ExecuteNonQuery();
         }
@@ -100,8 +100,10 @@ namespace InventoryManagement.Database
         {
             string sql = "SELECT * FROM Products";
             SqlCommand command = new SqlCommand(sql, _connection);
-            var reader = command.ExecuteReader();
-            return Product.GenerateProduct(reader);
+            using (var reader = command.ExecuteReader())
+            {
+                return Product.GenerateProduct(reader);
+            }
         }
     }
 }

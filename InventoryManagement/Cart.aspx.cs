@@ -37,7 +37,8 @@ namespace InventoryManagement
             {
                 int quantity = int.Parse(Session[productId].ToString());
                 if (quantity < 1) continue;
-                cartItems.InnerHtml += $"<div>{GetProductById(products, int.Parse(productId)).Name} : {quantity}" +
+                Product product = GetProductById(products, int.Parse(productId));
+                cartItems.InnerHtml += $"<div>{GetProductById(products, int.Parse(productId)).Name} : {quantity} - {product.Price * quantity}" +
                     $"<input type='hidden' name='item_{productId}' value='{Session[productId]}'></div>";
             }
         }
