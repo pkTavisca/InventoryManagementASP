@@ -9,12 +9,14 @@
 <body>
     <form id="form1" runat="server" method="post">
         <h1>Inventory Management Page</h1>
-        <ul id="listOfItems" runat="server">
+        <ul id="liItems" runat="server">
         </ul>
+        <div id="resultMessage" runat="server"></div>
         Add a new item
-        <div>Item:<input type="text" name="newItemName" /></div>
-        <div>Quantity:<input type="number" name="newItemQuantity" /></div>
-        <input type="submit" value="Add" />
+        <div>Item:<input type="text" name="inputItemName" /></div>
+        <div>Quantity:<input type="number" name="inputItemQuantity" /></div>
+        <div>Price Per Item:<input type="number" name="inputItemPrice" /></div>
+        <input type="submit" name="buttonAdd" value="Add" />
     </form>
     <a href="Default.aspx">Home Page</a>
 </body>
