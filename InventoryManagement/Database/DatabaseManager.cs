@@ -1,6 +1,7 @@
 ﻿using InventoryManagement.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -14,12 +15,7 @@ namespace InventoryManagement.Database
 
         public bool Connect()
         {
-            string dataSource = "TAVDESK037";
-            string database = "Inventory";
-            string userId = "sa";
-            string password = "test123!@#";
-
-            string connectionString = $"Data Source = {dataSource}; Initial Catalog = {database}; User ID = {userId}; Password = {password}";
+            string connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             _connection = new SqlConnection(connectionString);
 
             try

@@ -1,12 +1,7 @@
 ﻿using InventoryManagement.Database;
-using InventoryManagement.Inventory;
 using InventoryManagement.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace InventoryManagement
 {
@@ -24,11 +19,7 @@ namespace InventoryManagement
                 if (itemId.IndexOf("item_") != 0) continue;
                 int productId = int.Parse(itemId.Substring(5));
                 int itemQuantity = 0;
-                try
-                {
-                    itemQuantity = int.Parse(Request.Form[itemId]);
-                }
-                catch { }
+                itemQuantity = int.Parse(Request.Form[itemId]);
                 Product product = GetProductById(products, productId);
                 if (itemQuantity > product.Quantity) itemQuantity = product.Quantity;
                 Session[productId.ToString()] = itemQuantity;
