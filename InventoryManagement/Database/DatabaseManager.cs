@@ -14,7 +14,7 @@ namespace InventoryManagement.Database
 
         public bool Connect()
         {
-            string dataSource = "TAVDESKRENT015";
+            string dataSource = "TAVDESK037";
             string database = "Inventory";
             string userId = "sa";
             string password = "test123!@#";

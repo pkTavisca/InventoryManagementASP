@@ -9,7 +9,7 @@
 <body>
     <form id="form1" runat="server" method="post" action="Cart.aspx">
         <h1>Store Page</h1>
-        <ul id="listOfItems" runat="server">
+        <ul id="liItems" runat="server">
         </ul>
         <input type="submit" id="submitButton" runat="server" value="Continue to cart" />
     </form>

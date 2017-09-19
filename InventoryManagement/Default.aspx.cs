@@ -10,7 +10,7 @@ namespace InventoryManagement
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            listOfItems.InnerHtml = string.Empty;
+            liItems.InnerHtml = string.Empty;
 
             DatabaseManager dbManager = new DatabaseManager();
             dbManager.Connect();
@@ -19,7 +19,7 @@ namespace InventoryManagement
             foreach (var product in products)
             {
                 if (product.Quantity < 1) continue;
-                listOfItems.InnerHtml += $"<li>{product.Name} " +
+                liItems.InnerHtml += $"<li>{product.Name} " +
                     $"<input type='number' name='item_{product.Id}' value=0 /></li>";
             }
 

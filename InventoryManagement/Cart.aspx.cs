@@ -18,7 +18,7 @@ namespace InventoryManagement
             dbManager.Connect();
             var products = dbManager.GetAllProducts();
             dbManager.Disconnect();
-            cartItems.InnerHtml = string.Empty;
+            liCartItems.InnerHtml = string.Empty;
             foreach (var itemId in Request.Form.AllKeys)
             {
                 if (itemId.IndexOf("item_") != 0) continue;
@@ -38,7 +38,7 @@ namespace InventoryManagement
                 int quantity = int.Parse(Session[productId].ToString());
                 if (quantity < 1) continue;
                 Product product = GetProductById(products, int.Parse(productId));
-                cartItems.InnerHtml += $"<div>{GetProductById(products, int.Parse(productId)).Name} : {quantity} - {product.Price * quantity}" +
+                liCartItems.InnerHtml += $"<div>{GetProductById(products, int.Parse(productId)).Name} : {quantity} - {product.Price * quantity}" +
                     $"<input type='hidden' name='item_{productId}' value='{Session[productId]}'></div>";
             }
         }

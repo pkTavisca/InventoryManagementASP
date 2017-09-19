@@ -48,10 +48,10 @@ namespace InventoryManagement
                 }
             }
             List<Product> products = dbManager.GetAllProducts();
-            listOfItems.InnerHtml = string.Empty;
+            liItems.InnerHtml = string.Empty;
             foreach (var product in products)
             {
-                listOfItems.InnerHtml += $"<li>{product.Name} : " +
+                liItems.InnerHtml += $"<li>{product.Name} : " +
                     $"<input type='number' value='{product.Quantity}' name='prod{product.Id}' />" +
                     $" <input type='submit' value='Save' name='update' />" +
                     $"<input type='submit' value='Delete' name ='delete{product.Id}' /></li>";

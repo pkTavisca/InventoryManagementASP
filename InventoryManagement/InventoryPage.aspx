@@ -9,7 +9,7 @@
 <body>
     <form id="form1" runat="server" method="post">
         <h1>Inventory Management Page</h1>
-        <ul id="listOfItems" runat="server">
+        <ul id="liItems" runat="server">
         </ul>
         <div id="resultMessage" runat="server"></div>
         Add a new item
