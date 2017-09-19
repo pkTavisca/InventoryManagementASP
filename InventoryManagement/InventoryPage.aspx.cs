@@ -13,19 +13,19 @@ namespace InventoryManagement
             resultMessage.InnerText = string.Empty;
             DatabaseManager dbManager = new DatabaseManager();
             dbManager.Connect();
-            if (Request.Form.AllKeys.Contains("Add"))
+            if (Request.Form.AllKeys.Contains("buttonAdd"))
             {
-                dbManager.InsertNewProduct(Request.Form["newItemName"].ToString(),
-                    int.Parse(Request.Form["newItemQuantity"].ToString()),
-                    int.Parse(Request.Form["newItemPrice"].ToString()));
+                dbManager.InsertNewProduct(Request.Form["inputItemName"].ToString(),
+                    int.Parse(Request.Form["inputItemQuantity"].ToString()),
+                    int.Parse(Request.Form["inputItemPrice"].ToString()));
             }
-            if (Request.Form.AllKeys.Contains("update"))
+            if (Request.Form.AllKeys.Contains("buttonUpdate"))
             {
                 foreach (string key in Request.Form.AllKeys)
                 {
-                    if (key.Contains("prod"))
+                    if (key.Contains("buttonProd"))
                     {
-                        int productId = int.Parse(key.Substring(4));
+                        int productId = int.Parse(key.Substring(10));
                         int productQuantity = int.Parse(Request.Form[key]);
                         dbManager.UpdateProduct(productId, productQuantity);
                     }
@@ -33,9 +33,9 @@ namespace InventoryManagement
             }
             foreach (string key in Request.Form.AllKeys)
             {
-                if (key.Contains("delete"))
+                if (key.Contains("buttonDelete"))
                 {
-                    int productId = int.Parse(key.Substring(6));
+                    int productId = int.Parse(key.Substring(12));
                     try
                     {
                         dbManager.DeleteProduct(productId);
@@ -52,9 +52,9 @@ namespace InventoryManagement
             foreach (var product in products)
             {
                 liItems.InnerHtml += $"<li>{product.Name} : " +
-                    $"<input type='number' value='{product.Quantity}' name='prod{product.Id}' />" +
-                    $" <input type='submit' value='Save' name='update' />" +
-                    $"<input type='submit' value='Delete' name ='delete{product.Id}' /></li>";
+                    $"<input type='number' value='{product.Quantity}' name='buttonProd{product.Id}' />" +
+                    $" <input type='submit' value='Save' name='buttonUpdate' />" +
+                    $"<input type='submit' value='Delete' name ='buttonDelete{product.Id}' /></li>";
             }
             dbManager.Disconnect();
         }

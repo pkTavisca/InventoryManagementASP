@@ -13,10 +13,10 @@
         </ul>
         <div id="resultMessage" runat="server"></div>
         Add a new item
-        <div>Item:<input type="text" name="newItemName" /></div>
-        <div>Quantity:<input type="number" name="newItemQuantity" /></div>
-        <div>Price Per Item:<input type="number" name="newItemPrice" /></div>
-        <input type="submit" name="Add" value="Add" />
+        <div>Item:<input type="text" name="inputItemName" /></div>
+        <div>Quantity:<input type="number" name="inputItemQuantity" /></div>
+        <div>Price Per Item:<input type="number" name="inputItemPrice" /></div>
+        <input type="submit" name="buttonAdd" value="Add" />
     </form>
     <a href="Default.aspx">Home Page</a>
 </body>
